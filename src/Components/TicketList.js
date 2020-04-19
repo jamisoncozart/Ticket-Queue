@@ -1,16 +1,36 @@
 import React from 'react';
 import Ticket from './Ticket';
 
+const masterTicketList = [
+  {
+    names: 'Thato and Haley',
+    location: '3A',
+    issue: 'Firebase won\'t save record. Halp.'
+  },
+  {
+    names: 'Sleater and Kinney',
+    location: '4B',
+    issue: 'Prop types are throwing an error.'
+  },
+  {
+    names: 'Imani & Jacob',
+    location: '9F',
+    issue: 'Child component isn\'t rendering.'
+  }
+];
+
 function TicketList() {
   return (
-    <Ticket 
-      location='3A'
-      names="Jamison and Nichole"
-      issue="Firebase will not save record!" />
-    <Ticket 
-      location='4B'
-      names="Pat and Jim"
-      issue="Prop types are throwing an error" />
+    <React.Fragment>
+      <hr />
+      {masterTicketList.map((ticket, index) =>
+        <Ticket 
+          names={ticket.names}
+          location={ticket.location}
+          issue={ticket.issue}
+          key={index} />
+      )}
+    </React.Fragment>
   );
 }
 
