@@ -2,6 +2,7 @@ import React from 'react';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class TicketControl extends React.Component {
   constructor(props) {
@@ -60,6 +61,11 @@ class TicketControl extends React.Component {
     this.setState({selectedTicket: null});
   }
 
+  handleChangingSelectedTicket = id => {
+    const selectedTicket = this.props.masterTicketList[id];
+    this.setState({selectedTicket: selectedTicket});
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -67,7 +73,8 @@ class TicketControl extends React.Component {
       currentlyVisibleState = <NewTicketForm />
       buttonText = "Return to Ticket List";
     } else {
-      currentlyVisibleState = <TicketList />
+      currentlyVisibleState = <TicketList 
+        ticketlist={this.props.masterTicketList} />
       buttonText = "Add Ticket";
     }
     return (
@@ -79,6 +86,16 @@ class TicketControl extends React.Component {
   }
 }
 
-TicketControl = connect()(TicketControl);
+Ticketcontrol.propTypes = {
+  masterTicketList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    masterTicketList: state
+  }
+}
+
+TicketControl = connect(mapStateToProps)(TicketControl);
 
 export default TicketControl;
