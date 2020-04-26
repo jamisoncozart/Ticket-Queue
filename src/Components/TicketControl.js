@@ -2,7 +2,7 @@ import React from 'react';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 
-class TicketControl extends Component {
+class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class TicketControl extends Component {
       buttonText = "Return to Ticket List";
     } else {
       currentlyVisibleState = <TicketList />
-      addTicketButton = "Add Ticket";
+      buttonText = "Add Ticket";
     }
     return (
       <React.Fragment>
